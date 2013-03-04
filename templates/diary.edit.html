@@ -1,0 +1,40 @@
+[% WRAPPER "_wrapper.tt", title = "∞::解析くん" %]
+
+<form action="" method="post">
+    <table>
+        <tr>
+            <th><label for="title">タイトル</label></th>
+            <td>
+                <input type="text" id="title" name="title" class="text" value="[% diary ? diary.title : r.req.param('title') | html %]"/>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="content">コンテンツ</label></th>
+            <th></th>
+        </tr>
+            <td>
+                データの編集<br>
+                <textarea id="content" name="content" class="text" rows="30" cols="80" value=""/>[% diary ? diary.content : r.req.param('content') | html %]</textarea>
+                コメント・解釈を入力してください。<br>
+                <textarea id="main_content" name="main_content" rows="15" cols="50" value=""/>[% diary ? diary.main_content : r.req.param('main_content') | html %]</textarea>
+            <input type="submit" value="編集"/>
+                <a href="/">キャンセル</a>
+            </td>
+            <td>
+                <div id="edit_result_content">
+                [% diary.result_content %]
+                </div>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="submit">
+                
+                <input type="hidden" name="id" value="[% diary.id | html %]"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+[% END %]

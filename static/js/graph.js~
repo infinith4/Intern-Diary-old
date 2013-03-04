@@ -1,0 +1,34 @@
+$(function() {
+    $.ajax({
+        type: "GET",
+        url: "/api/",
+        dataType: "JSON",
+        success :function (plotdata){
+        
+            var plot = function() {
+            var canvas = document.getElementById('c1');
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, 500, 500);
+            /* 枠を書く */
+            ctx.strokeRect(0, 0, 500, 500);
+            /* パスの初期化 */
+            ctx.beginPath();
+            /* 初期配置 */
+            ctx.moveTo(0, 250);
+            /* 線を引く */
+            ctx.lineTo(500, 250);
+            ctx.closePath();
+            
+            
+            plotdata.forEach(function(data){
+            
+                ctx.beginPath();
+                ctx.strokeStyle = '#00F'; // 線の色を青にセット
+                ctx.arc(-10, 80, 3, 0, Math.PI * 2, false);
+                ctx.fill();
+                ctx.stroke();
+            };
+        };
+
+
+

@@ -1,0 +1,21 @@
+[% WRAPPER "_wrapper.tt", title = "Intern::Diary::Top" %]
+
+<header>
+        [% entry.title | html %]
+</header>
+
+<ol>
+    [% FOR diary IN diarys %]
+    <li>
+        [% diary.user.name | html %] - [% diary.content | html %] - 
+        [% diary.created_on.strftime('%Y-%m-%d') | html %]
+        [% IF r.user.name == diary.user.name %]
+        <a href="/diary.add?id=[% entry.id | html %]">編集</a>
+        <a href="/diary.delete?id=[% entry.id | html %]">削除</a>
+        [% END %]
+    </li>
+    [% END %]
+</ol>
+
+
+[% END %]

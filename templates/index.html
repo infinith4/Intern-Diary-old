@@ -1,0 +1,38 @@
+[% WRAPPER "_wrapper.tt", title = "∞::解析くん" %]
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+<script type="text/javascript" src="js/diary.js" id='diary'></script>
+<script type="text/javascript" src="js/graph.js" id='graph'></script>
+
+[% IF diarys.size %]
+    [% FOR diary IN diarys %]<!--diary :Entry オブジェクト-->
+    <section class="diary">
+
+            <header>
+                <h1>[% diary.title | html %]</h1>
+            </header>
+            <p>[% diary.result_content %]</p><!-- | htmlと書くとエスケープされる -->
+            コメント・解釈<br>
+            <div id='main_content-box' class='radius'>
+                    [% diary.main_content | html | html_line_break %]
+            </div>
+            <footer>
+                [% diary.created_on.strftime('%Y-%m-%d') | html %]
+                <a href="/diary.edit?id=[% diary.id | html %]">編集</a>
+                <a href="/diary.delete?id=[% diary.id | html %]">削除</a>
+                <hr>
+            </footer>
+        </script>
+    </section>
+    [% END %]
+
+    <div id="nextpage">
+    </div>
+    <p id="bottom"><font color="#000000">次のページ</font></p>
+    <input type="hidden" id='page' page=[% page %]></input>
+[% ELSE %]
+    <p>日記がまだありません → <a href="/diary.add">作成</a></p>
+[% END %]
+
+[% END %]
+

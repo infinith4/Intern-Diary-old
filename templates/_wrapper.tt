@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>[% title %]</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <script type="text/javascript" src="jquery.bottom-1.0.js"></script>
+        
+        <style type="text/css">
+            .radius	{
+                -webkit-border-radius: 10px;	/* Safari,Google Chrome用 */
+                -moz-border-radius: 10px;	/* Firefox用 */
+                margin: 0 auto;
+            }
+            
+            p:bottom	{
+            }
+
+            #title-box {
+                margin: 0 auto;
+                width : 650px;
+                height : 50px;
+                font-size: 12px;
+                border: 1px solid #1E90FF;
+                background-color: #87ceeb;
+            }
+            #content-box {
+                font-size: 80%;
+                width : auto;
+                border: 3px solid #a9a9a9;
+                background-color: #F5F5F5;
+            }
+            #edit_result_content {
+                font-size: 80%;
+                width : auto;
+                border: 3px solid #a9a9a9;
+                background-color: #ffffff;
+            }
+            #main_content-box {
+                font-size: 90%;
+                width : 400px;
+                border: 3px solid #a9a9a9;
+                background-color: #ffffff;
+            }
+            html, body {
+                padding: 0;
+                margin: 0;
+                color: #333;
+                background: #ffffff;
+                background-image:url(images/oxaydd2.png); /* 背景画像のURL */
+                background-repeat:repeat; /* 背景画像の繰り返し */
+            }
+
+            a:link {
+                text-decoration: none;
+            }
+
+            a:visited {
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            #global-header {
+                display: block;
+                padding: 10px;
+                background: #efefef;
+            }
+
+            #content {
+                display: block;
+                padding: 10px;
+            }
+
+            #global-footer {
+                display: block;
+                padding: 10px;
+                background: #efefef;
+            }
+
+            form table {
+                border-collapse: collapse;
+                width: 800px;
+            }
+
+            form table tr th ,
+            form table tr td {
+                padding: 10px 0;
+                border-style: solid;
+                border-color: #d9d9d9;
+                border-width: 1px 0;
+            }
+
+            form table th {
+                width: 10em;
+                font-size: 80%;
+                color: #333;
+            }
+
+            form table td input.text {
+                width: 500px;
+            }
+
+            form table td.submit {
+                text-align: center;
+            }
+
+            .bookmark {
+                padding: 10px;
+            }
+
+            .bookmark p {
+                margin: 0;
+                padding: 0;
+            }
+
+            .bookmark footer {
+                font-size: 80%;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <header id="global-header">
+            [% IF r.user %]
+            ようこそ [% r.user.name | html %] さん |
+            <a href="/diary.add">記事を書く</a> |
+            <a href="/">一覧</a> |
+            <a href="images/about_pca.pdf" target="_blank">主成分分析について（PDF）</a> |
+            
+            [% ELSE %]
+            <a href="/login">ログイン</a>
+            [% END %]
+        </header>
+
+        <div id="content">
+            [% IF r.user %]
+            <center>
+                <!-- <img src="images/Rlogo.jpg" width="20" height="20"> -->
+                <div id='title-box' class='radius'>
+                    <a href="/"><h2><font size="4" color="#000000">[% title %]</font></h2></a>
+                </div>
+            </center>
+            <br>
+            <center>
+                <div id='content-box' class='radius'>
+                    [% content %]
+                </div>
+            </center>
+            [% ELSE %]
+            <p><a href="/login">ログイン</a>しないと使えません!</p>
+            [% END %]
+        </div>
+
+        <footer id="global-footer">
+            Hatena
+        </footer>
+    </body>
+</html>
+

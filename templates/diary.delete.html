@@ -1,0 +1,32 @@
+[% WRAPPER "_wrapper.tt", title = "∞::解析くん" %]
+
+<form action="" method="post">
+    <p>本当に削除しますか?</p>
+    <table>
+        <tr>
+            <th><label for="title">タイトル</label></th>
+            <td>
+                [% diary.title | html %]
+            </td>
+        </tr>
+        <tr>
+            <th><label for="content">コンテンツ</label></th>
+            <th></th>
+            <td>
+                [% diary.result_content %]
+                
+            </td>
+            <td>[% diary.main_content | html | html_line_break %]</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2" class="submit">
+                <input type="submit" value="削除"/>
+                <a href="/">キャンセル</a>
+                <input type="hidden" name="id" value="[% diary.id | html %]"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+[% END %]

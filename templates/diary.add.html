@@ -1,0 +1,41 @@
+[% WRAPPER "_wrapper.tt", title = "∞::解析くん" %]
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+<script type="text/javascript" src="js/diary.js" id='diary'></script>
+<form action="" method="post">
+    <table>
+        <tr>
+            <th><label for="title">タイトル</label></th>
+            <td>
+                <input type="text" id="title" name="title" class="text" value="[% diary ? diary.title : r.req.param('title') | html %]"/>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="content">データがない人は、下の項目にデータを入力してください</label><br>
+            <BUTTON type="button" id="sampledata1">サンプルデータ1</BUTTON>
+            <BUTTON type="button" id="sampledata2">サンプルデータ2</BUTTON>
+            </th>
+            <th>
+                <font color="#da0b00">*データはサンプルデータのように、カンマ区切りで、1行目には、変数名、1列目には、標本名を指定してください。</font>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <textarea id="content" name="content" class="text" rows="30" cols="80" value=""/>[% diary ? diary.content : r.req.param('content') | html %]</textarea>
+            </td>
+            <td>
+                <textarea id="main_content" name="main_content" rows="15" cols="50" value=""/>[% diary ? diary.main_content : r.req.param('main_content') | html %]</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="submit">
+                <input type="submit" value="解析する"/>
+                <a href="/">キャンセル</a>
+                <input type="hidden" name="id" value="[% diary.id | html %]"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<data class="sample1-data" style="display:none;">[% diary.sampledata1 %]</data>
+
+
+[% END %]
