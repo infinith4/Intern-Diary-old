@@ -11,13 +11,13 @@ use JSON::XS;
 use GD::Graph::points;
 use Jcode;
 
+
 sub default : Public {
     my ($self, $r) = @_;
     my $id = $r->req->param('id');
     my $user = moco("User")->find(id => $id);
     my $diarys = $user->diarys;
     
-
     $r->stash->param(
         user    => $user,
         diarys => $diarys,
@@ -29,7 +29,6 @@ sub add : Public {
 
     my $id = $r->req->param('id');
     my $entry = $id ? moco("Entry")->find(id => $id) : undef;#$id があったら、$entry = $id、なかったら、moco("Entry")->find(id => $id) : undef
-    #print Data::Dumper::Dumper $entry;
     my $diary = $entry ? $r->user->diary_on_entry($entry) : undef;
 
     $r->stash->param(
