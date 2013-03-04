@@ -146,8 +146,6 @@ sub pca{
     #$contentの表は、第１列は標本名、第1行は変数とする
     #$contentを下の形式にする
 
-
-
     my @lines = split(/\r?\n/, $content);
     #print @lines;
     my @table_data=();
@@ -269,11 +267,6 @@ sub pca{
     my @eigenvector = $pca->results('eigenvector');
     #print Data::Dumper::Dumper @eigenvector,"\n";
     my @full = $pca->results('full');
-    #print Data::Dumper::Dumper \@full,"\n";
-    #print Data::Dumper::Dumper \@list;
-    #print $eigenvector[0][0],"\n";
-    #print $eigenvector[0][1],"\n";
-    
 
     #tableをつくる
 
@@ -292,7 +285,6 @@ sub pca{
     my $table_eigenvalue="<td bgcolor='#b0c4de'>固有値</td>";
     my $table_eigenvector="";
     
-    #print "\n";
     for ($i=0;$i<$col-1;$i++){#$col-1は変数の数
         $table_pc=$table_pc.$tag_th_st."第".($i+1)."主成分".$tag_th_ed;
         $table_proportion=$table_proportion.$tag_td_st.sprintf( "%-5.5f", $proportion[$i] ).$tag_td_ed;
@@ -363,7 +355,6 @@ sub pca{
     }
     
  
-    #my $item = "<tr><th>Proportion(寄与率)</th><th>Cumulative(累積寄与率)</th><th>Standard Deviation(標準偏差)</th><th>(固有値)</th><th>(固有ベクトル)</th></tr>";
     
     my $result_content = "主成分分析の結果だよ！簡単でしょ？<br>".$tag_table_st.$table_pc.$table_proportion.$table_cumulative.$table_stdev.$table_eigenvalue.$tag_table_ed;
     $result_content=$result_content."<br><br>固有ベクトル<br><font color='#f0f0f0'>*</font>第1主成分のなかで、2つ最大または最小のものを探して、その2つの変数が何を表しているか解釈してみよう！<br>次の第2主成分でも同じ事をして解釈してみよう!".$tag_table_st.$table_pc.$table_eigenvector.$tag_table_ed;
